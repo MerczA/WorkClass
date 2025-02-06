@@ -29,7 +29,12 @@ fun main (){
 
     printArray(names)
 
+    val numbers = arrayOf(1,2,3,4,5,6,7,8,9,10)
+
+    isEven(numbers)
+
 }
+
 fun add():Int{
     val x = 10
     val y = 5
@@ -40,9 +45,20 @@ fun product(x:Int,y:Int):Int{ //Funcion con variables con parametros desde el ma
     return (x*y)
 }
 
-fun printArray(names:Array<String>){
-    for (name in names){ //Ciclo for y nos dice que por cada elemento del array va tomar la variable name
+fun printArray(names:Array<String>) {
+    for (name in names) { //Ciclo for y nos dice que por cada elemento del array va tomar la variable name
         println("Hello $name, ")
 
     }
 }
+fun isEven(numbers: Array<Int>) {
+        for (number in numbers) {
+            if (number % 2 == 0) {
+                println("The number $number is even")
+            } else {
+                println("The number $number is odd")
+            }
+        }
+    }
+
+
