@@ -33,6 +33,17 @@ fun main (){
 
     isEven(numbers)
 
+    println(getDay(1))
+    println(getDay(8))
+
+    val person = Person("Geovanni",20)
+    person.displayInformation()
+
+    println(person.name)
+    println(person.age)
+
+
+
 }
 
 fun add():Int{
@@ -60,5 +71,29 @@ fun isEven(numbers: Array<Int>) {
             }
         }
     }
+fun getDay(day:Int):String{
+    var name = ""
+
+    when(day){ //Es un caso como switch
+        1 -> name = "Monday" //Si tenemos funciones mas complejas se abren llaves despues de (->)
+        2 -> name = "Tuesday"
+        3 -> name = "Wednesday"
+        4 -> name = "Thursday"
+        5 -> name = "Friday"
+        6 -> name = "Saturday"
+        7 -> name = "Sunday"
+        else -> name = "Incorrect Value"
+
+    }
+    return name
+}
+
+class Person (val name:String,val age:Int){
+    fun displayInformation(){
+        println("Name: $name Age: $age")
+
+    }
+
+}
 
 
