@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
                         TextComposable()
                         TextComposable()
                         TextComposable()
+                        TextComposable()
                     }
                     Row() {
                         TextComposable()
