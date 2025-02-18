@@ -73,7 +73,7 @@ fun TextComposable(name: String = "Empty") {
 fun ModifierExample1(){
     Column (
         modifier = Modifier
-            .padding(40.dp,30.dp,20.dp,10.dp)
+            .padding(40.dp,30.dp,20.dp,10.dp)//Izquierda,Arriba,Derecha y Abajo
     ){
         Text("Hello World")
     }
