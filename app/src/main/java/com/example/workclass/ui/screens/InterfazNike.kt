@@ -65,6 +65,7 @@ fun TopBarNike(){
                 fontSize = 17.sp,
                 modifier = Modifier
                     .padding(30.dp,0.dp,170.dp,0.dp)
+                    .background(Color.Black)
 
 
             )
