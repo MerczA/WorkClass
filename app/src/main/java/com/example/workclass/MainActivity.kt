@@ -3,9 +3,7 @@ package com.example.workclass
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-
 import androidx.compose.runtime.Composable
-
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,6 +13,9 @@ import com.example.workclass.ui.screens.InterfazNike
 import com.example.workclass.ui.screens.MainMenuScreen
 import com.example.workclass.ui.screens.TestScreen
 import com.example.workclass.ui.theme.WorkClassTheme
+
+
+
 
 
 class MainActivity : ComponentActivity() {
