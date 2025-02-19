@@ -1,11 +1,9 @@
 package com.example.workclass.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -65,7 +63,6 @@ fun TopBarNike(){
                 fontSize = 17.sp,
                 modifier = Modifier
                     .padding(30.dp,0.dp,170.dp,0.dp)
-                    .background(Color.Black)
 
 
             )
