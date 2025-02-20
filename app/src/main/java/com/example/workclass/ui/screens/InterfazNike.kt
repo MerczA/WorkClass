@@ -106,7 +106,7 @@ fun InterfazNike(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(700.dp),
-                painter = painterResource(R.drawable.imafull),
+                painter = painterResource(R.drawable.imafull), //Imagen de hombre con caja de tenis
                 contentDescription = "Android Logo",
                 contentScale = ContentScale.Crop
 
@@ -128,6 +128,7 @@ fun InterfazNike(navController: NavHostController) {
                         .padding(25.dp,3.dp,0.dp,0.dp)
                 )
             }
+            ApartadoMembersDays()
     }
 }
 
@@ -255,14 +256,14 @@ fun Discount(){
             .fillMaxWidth()
             .fillMaxSize()
             .background(Color.Transparent)
-            .height(250.dp)
+            .height(270.dp)
             .padding(12.dp,20.dp,20.dp,20.dp)
             .horizontalScroll(rememberScrollState())
     ){
 
         Row (
         ){
-            Image(
+            Column { Image(
                 painter = painterResource(R.drawable.img_1), //Imagen del 30% de descuento
                 contentDescription = "Imagen de 30% de descuento",
                 contentScale = ContentScale.Crop,
@@ -273,72 +274,121 @@ fun Discount(){
                     .padding(5.dp)
                     .border(1.dp, Color.Black, shape = RectangleShape), // Agrega un borde negro y redondo
             )
-            Image(
-                painter = painterResource(R.drawable.img_4), //Imagen del 20% de descuento
-                contentDescription = "Imagen de 20% de descuento",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clickable (onClick = {clickAction() })
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(5.dp)
-                    .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-            )
-            Image(
-                painter = painterResource(R.drawable.img_3),//Imagen de meses sin intereses
-                contentDescription = "Imagen de 9 meses sin intereses",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clickable (onClick = {clickAction() })
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(5.dp)
-                    .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-            )
-            Image(
-                painter = painterResource(R.drawable.img_2),//Imagen hombre
-                contentDescription = "Imagen de hombre",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clickable (onClick = {clickAction() })
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(5.dp)
-                    .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-            )
-            Image(
-                painter = painterResource(R.drawable.img_6),//Imagen de hombre corriendo
-                contentDescription = "Hombre corriendo",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clickable (onClick = {clickAction() })
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(5.dp)
-                    .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-            )
-            Image(
-                painter = painterResource(R.drawable.img_5),
-                contentDescription = "Hombre haciendo ejercicio",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clickable (onClick = {clickAction() })
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(5.dp)
-                    .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-            )
-            Image(
-                painter = painterResource(R.drawable.img_7),//Logo futbol
-                contentDescription = "Hombre practicando deporte",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clickable (onClick = {clickAction() })
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(5.dp)
-                    .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-            )
+                Text("Hasta 30% de descuento",
+                    modifier = Modifier
+                        .padding(3.dp,0.dp,0.dp,0.dp)
+
+                )
+
+            }
+            Column {
+                Image(
+                    painter = painterResource(R.drawable.img_4), //Imagen del 20% de descuento
+                    contentDescription = "Imagen de 20% de descuento",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clickable (onClick = {clickAction() })
+                        .width(200.dp)
+                        .height(200.dp)
+                        .padding(5.dp)
+                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                )
+                Text("Hasta 20% de descuento",
+                    modifier = Modifier
+                        .padding(3.dp,0.dp,0.dp,0.dp)
+                )
+            }
+            Column {
+                Image(
+                    painter = painterResource(R.drawable.img_3),//Imagen de meses sin intereses
+                    contentDescription = "Imagen de 9 meses sin intereses",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clickable (onClick = {clickAction() })
+                        .width(200.dp)
+                        .height(200.dp)
+                        .padding(5.dp)
+                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                )
+                Text("Meses sin intereses ",
+                    modifier = Modifier
+                        .padding(3.dp,0.dp,3.dp,0.dp)
+                )
+            }
+
+           Column { Image(
+               painter = painterResource(R.drawable.img_2),//Imagen hombre
+               contentDescription = "Imagen de hombre",
+               contentScale = ContentScale.Crop,
+               modifier = Modifier
+                   .clickable (onClick = {clickAction() })
+                   .width(200.dp)
+                   .height(200.dp)
+                   .padding(5.dp)
+                   .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+           )
+               Text("El toque que tu estilo necesita",
+                   modifier = Modifier
+                       .padding(3.dp,0.dp,0.dp,0.dp)
+               )
+
+           }
+
+            Column {
+                Image(
+                    painter = painterResource(R.drawable.img_6),//Imagen de hombre corriendo
+                    contentDescription = "Hombre corriendo",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clickable (onClick = {clickAction() })
+                        .width(200.dp)
+                        .height(200.dp)
+                        .padding(5.dp)
+                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                )
+                Text("Rompe tu marca personal",
+                    modifier = Modifier
+                        .padding(3.dp,0.dp,0.dp,0.dp)
+                )
+            }
+
+           Column {
+               Image(
+                   painter = painterResource(R.drawable.img_5),
+                   contentDescription = "Hombre haciendo ejercicio",
+                   contentScale = ContentScale.Crop,
+                   modifier = Modifier
+                       .clickable (onClick = {clickAction() })
+                       .width(200.dp)
+                       .height(200.dp)
+                       .padding(5.dp)
+                       .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+               )
+               Text("Entrena con lo mejor",
+                   modifier = Modifier
+                       .padding(3.dp,0.dp,0.dp,0.dp)
+               )
+           }
+            Column {
+
+                Image(
+                    painter = painterResource(R.drawable.img_7),//Logo futbol
+                    contentDescription = "Hombre practicando deporte",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clickable (onClick = {clickAction() })
+                        .width(200.dp)
+                        .height(200.dp)
+                        .padding(5.dp)
+                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                )
+                Text("Domina la cancha",
+                    modifier = Modifier
+                        .padding(3.dp,0.dp,0.dp,0.dp)
+                )
+
+            }
+
         }}
     }
 }
@@ -351,84 +401,151 @@ fun ApartadoTenis(){
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxSize()
-                .background(Color.Transparent)
-                .height(250.dp)
+                .height(280.dp)
                 .padding(12.dp,20.dp,20.dp,20.dp)
                 .horizontalScroll(rememberScrollState())
         ){
 
             Row (
-            ){
-                Image(
-                    painter = painterResource(R.drawable.tenis1), //Imagen del 30% de descuento
-                    contentDescription = "Imagen de 30% de descuento",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .clickable (onClick = {clickAction() })
-                        .width(200.dp)
-                        .height(200.dp)
-                        .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape), // Agrega un borde negro y redondo
-                )
-                Image(
-                    painter = painterResource(R.drawable.tenis2), //Imagen del 20% de descuento
-                    contentDescription = "Imagen de 20% de descuento",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .clickable (onClick = {clickAction() })
-                        .width(200.dp)
-                        .height(200.dp)
-                        .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-                )
-                Image(
-                    painter = painterResource(R.drawable.tenis3),//Imagen de meses sin intereses
-                    contentDescription = "Imagen de 9 meses sin intereses",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .clickable (onClick = {clickAction() })
-                        .width(200.dp)
-                        .height(200.dp)
-                        .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-                )
-                Image(
-                    painter = painterResource(R.drawable.tenis4),//Imagen hombre
-                    contentDescription = "Imagen de hombre",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .clickable (onClick = {clickAction() })
-                        .width(200.dp)
-                        .height(200.dp)
-                        .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-                )
-                Image(
-                    painter = painterResource(R.drawable.tenis5),//Imagen de hombre corriendo
-                    contentDescription = "Hombre corriendo",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .clickable (onClick = {clickAction() })
-                        .width(200.dp)
-                        .height(200.dp)
-                        .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-                )
-                Image(
-                    painter = painterResource(R.drawable.tenis6),
-                    contentDescription = "Hombre haciendo ejercicio",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .clickable (onClick = {clickAction() })
-                        .width(200.dp)
-                        .height(200.dp)
-                        .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-                )
 
-            }}
+            ){
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.tenis1), //Imagen primer par de tenis
+                        contentDescription = "Imagen de par de tenis",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(5.dp)
+                            .border(1.dp, Color.Black, shape = RectangleShape), // Agrega un borde negro y redondo
+                    )
+                    Text("Air Jordan Legacy 321 Low",
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.tenis2), //Imagen del 20% de descuento
+                        contentDescription = "Imagen de 20% de descuento",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(5.dp)
+                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                    )
+                    Text("Lebron TR1",
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
+                }
+
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.tenis3),//Imagen de meses sin intereses
+                        contentDescription = "Imagen de 9 meses sin intereses",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(5.dp)
+                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                    )
+                    Text("Air Jordan 1 Low",
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
+                }
+
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.tenis4),//Imagen hombre
+                        contentDescription = "Imagen de hombre",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(5.dp)
+                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                    )
+                    Text("Nike Air Force 1 Retro",
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.tenis5),//Imagen de hombre corriendo
+                        contentDescription = "Hombre corriendo",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(5.dp)
+                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                    )
+                    Text("Nike Zoom Vomero Roam",
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
+
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.tenis6),
+                        contentDescription = "Hombre haciendo ejercicio",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(5.dp)
+                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
+                    )
+                    Text("Nike V2K Run",
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
+
+                }
+            }
+        }
     }
 }
+
+
+@Preview(showBackground = true)
+@Composable
+fun ApartadoMembersDays(){
+    Row {
+        Column(
+
+        ) { Text("Hola") }
+        Column (
+
+        ){ Text("Hola 2") }
+        Column (
+
+        ){ Text("Hola 3") }
+
+
+    }
+
+}
+
 
 
 
