@@ -29,7 +29,10 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,14 +54,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.workclass.R
 
-
 @Composable
 fun InterfazNike(navController: NavHostController) {
         Column(
             modifier = Modifier
                 .padding(0.dp, 15.dp, 0.dp, 0.dp)
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState()) //Para poder tener scroll de manera vertical
+                .verticalScroll(rememberScrollState()) //Para poder tener scroll de manera vertical dentro de la aplicacion
         ) {
             TopBarNike() //Le llamamaos a la funcion TopBar
             Box(//Utilizamos un Box para que el menuIcons Podamos ajustar su padding y ponerlo mas al centro
@@ -69,11 +71,16 @@ fun InterfazNike(navController: NavHostController) {
                 MenuIcons() //Llamamaos a la funcion de MenuIcons
             }
             BarraCat()
+
+            Divider(color = Color.LightGray, thickness = 2.dp, //Nueva funcion o elemento Divider
+                modifier = Modifier
+                    .padding(0.dp,0.dp,0.dp,0.dp))
+
             Text(
                 "Lo mejor de Member Days Hombre",
                 fontSize = 20.sp, //Tamaño de la letra
                 modifier = Modifier
-                    .padding(25.dp,0.dp,0.dp,0.dp)
+                    .padding(25.dp,10.dp,0.dp,0.dp)
             )
             Box(//Utilizamos un Box para mover el texto que estara debajo de las categorias
                 modifier = Modifier
@@ -88,31 +95,33 @@ fun InterfazNike(navController: NavHostController) {
                     modifier = Modifier
                         .padding(25.dp,0.dp,220.dp,0.dp)
                 )
-                Text( //Titulo para categoria de tenis
+
+                Text( //Titulo alineado a la izquierda para ver todos
                     "Ver todos",
                     fontSize = 15.sp, //Tamaño de la letra
                     modifier = Modifier
                         .padding(25.dp,0.dp,0.dp,0.dp)
+                        .clickable (onClick = {clickAction() })
+
                 )
             }
             Box(//Utilizamos un Box para mover el texto que estara debajo de las categorias
                 modifier = Modifier
                     .padding(25.dp,0.dp,0.dp,0.dp)// Utilizamos solo la primera seccion que es la parte de la izquierda
             ){
-                ApartadoTenis()
+                ApartadoTenis() //Nos muestra la funcion de apartado de tenis
             }
 
-            Image(
+            Image( //Imagen que representa un catalogo no tiene funcionalidad
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(700.dp),
                 painter = painterResource(R.drawable.imafull), //Imagen de hombre con caja de tenis
-                contentDescription = "Android Logo",
-                contentScale = ContentScale.Crop
+                contentDescription = "Imagen de catalogo",
+                contentScale = ContentScale.Crop //Con el Crop se ajusta la imagen a todo el ancho de la pagina
 
             )
-            Column (
-
+            Column ( //Utilizamos un column para que muestre los dos textos uno debajo de otro
             ){
                 Text( //Titulo para collage Members Days
                     "Solo por Members Days",
@@ -128,8 +137,11 @@ fun InterfazNike(navController: NavHostController) {
                         .padding(25.dp,3.dp,0.dp,0.dp)
                 )
             }
+            //Muestra las dos funciones que son el menu de 6 productos 3 por cada funcion
             ApartadoMembersDays()
-    }
+            ApartadoMembersDays2()
+            BotonFinal(navController)
+        }
 }
 
 @Preview(showBackground = true)
@@ -143,7 +155,7 @@ fun TopBarNike(){
                 .fillMaxSize()
                 .padding(30.dp,0.dp,0.dp,0.dp)
         ){
-            Icon(
+            Icon( //Icono de menu
                 Icons.Filled.Menu,
                 contentDescription = "Menu Icon",
                 tint = Color.Black,
@@ -151,14 +163,14 @@ fun TopBarNike(){
                     .size(25.dp)
             )
             Text(
-                text = "Comprar",
+                text = "Comprar", //Titulo superior
                 color = Color.Black,
                 fontSize = 25.sp,
                 modifier = Modifier
                     .padding(30.dp,0.dp,245.dp,0.dp)
             )
             Icon(
-                Icons.Filled.Search,
+                Icons.Filled.Search, //Icono de busqueda
                 contentDescription = "Search",
                 tint = Color.Black,
                 modifier = Modifier
@@ -166,7 +178,7 @@ fun TopBarNike(){
                     .padding(0.dp,0.dp,3.dp,0.dp)
             )
             Icon(
-                Icons.Filled.ShoppingCart,
+                Icons.Filled.ShoppingCart, //Icono carrito de compra
                 contentDescription = "Menu Icon",
                 tint = Color.Black,
                 modifier = Modifier
@@ -181,22 +193,23 @@ fun TopBarNike(){
 fun MenuIcons() {
     Row(
         modifier = Modifier
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(20.dp)) //Funcion para redondear los bordes
             .background(Color.LightGray)
             .size(width = 100.dp, height = 40.dp)
             .padding(12.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically, //Usamos estas funciones para centrar los dos iconos
         horizontalArrangement = Arrangement.Center
     ) {
         Icon(
-            Icons.Filled.Person,
+            Icons.Filled.Check, //Icono de paloma simulando la de Nike
             contentDescription = "Menu Icon",
             tint = Color.Black,
             modifier = Modifier
                 .size(20.dp)
+                .padding(0.dp,0.dp,6.dp,0.dp)
         )
         Icon(
-            Icons.Filled.Menu,
+            Icons.Filled.ThumbUp, //Icono que seria el de Jordan
             contentDescription = "Menu Icon",
             tint = Color.Black,
             modifier = Modifier
@@ -212,10 +225,10 @@ fun BarraCat(){ //Categorias entre Man,Woman and kids
         Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(5.dp,5.dp,0.dp,0.dp)
+                .padding(5.dp,0.dp,0.dp,0.dp)
         ){
             Text(
-                stringResource(R.string.Men),//Categoria de Hombre
+                stringResource(R.string.Men),//Categoria de Hombre desde Drawable
                 color = Color.Black,
                 fontSize = 17.sp,
                 modifier = Modifier
@@ -225,7 +238,7 @@ fun BarraCat(){ //Categorias entre Man,Woman and kids
             )
             Row {
                 Text(
-                    stringResource(R.string.Woman), //Categoria de Mujeres
+                    stringResource(R.string.Woman), //Categoria de Mujeres desde Drawable
                     color = Color.Black,
                     fontSize = 17.sp,
                     modifier = Modifier
@@ -234,7 +247,7 @@ fun BarraCat(){ //Categorias entre Man,Woman and kids
                         )
                         )
                 Text(
-                    stringResource(R.string.Kids), // Categoria de Niño/a
+                    stringResource(R.string.Kids), // Categoria de Niño/a desde Drawable
                     color = Color.Black,
                     fontSize = 17.sp,
                     modifier = Modifier
@@ -272,7 +285,6 @@ fun Discount(){
                     .width(200.dp)
                     .height(200.dp)
                     .padding(5.dp)
-                    .border(1.dp, Color.Black, shape = RectangleShape), // Agrega un borde negro y redondo
             )
                 Text("Hasta 30% de descuento",
                     modifier = Modifier
@@ -291,7 +303,6 @@ fun Discount(){
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                 )
                 Text("Hasta 20% de descuento",
                     modifier = Modifier
@@ -308,7 +319,6 @@ fun Discount(){
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                 )
                 Text("Meses sin intereses ",
                     modifier = Modifier
@@ -325,7 +335,6 @@ fun Discount(){
                    .width(200.dp)
                    .height(200.dp)
                    .padding(5.dp)
-                   .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
            )
                Text("El toque que tu estilo necesita",
                    modifier = Modifier
@@ -344,7 +353,6 @@ fun Discount(){
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                 )
                 Text("Rompe tu marca personal",
                     modifier = Modifier
@@ -362,7 +370,6 @@ fun Discount(){
                        .width(200.dp)
                        .height(200.dp)
                        .padding(5.dp)
-                       .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                )
                Text("Entrena con lo mejor",
                    modifier = Modifier
@@ -380,7 +387,6 @@ fun Discount(){
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
-                        .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                 )
                 Text("Domina la cancha",
                     modifier = Modifier
@@ -412,16 +418,16 @@ fun ApartadoTenis(){
                 Column {
                     Image(
                         painter = painterResource(R.drawable.tenis1), //Imagen primer par de tenis
-                        contentDescription = "Imagen de par de tenis",
+                        contentDescription = "Imagen de par de tenis Air Jordan Legacy 321 Low",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .clickable (onClick = {clickAction() })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
-                            .border(1.dp, Color.Black, shape = RectangleShape), // Agrega un borde negro y redondo
                     )
-                    Text("Air Jordan Legacy 321 Low",
+                    Text("Air Jordan Legacy 321 Low \n$2,899",
+                        fontSize = 15.sp,
                         modifier = Modifier
                             .padding(3.dp,0.dp,0.dp,0.dp)
 
@@ -429,73 +435,58 @@ fun ApartadoTenis(){
                 }
                 Column {
                     Image(
-                        painter = painterResource(R.drawable.tenis2), //Imagen del 20% de descuento
-                        contentDescription = "Imagen de 20% de descuento",
+                        painter = painterResource(R.drawable.tenis2), //Imagen segundo par de tenis
+                        contentDescription = "Imagen de tenis Lebron TR1",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .clickable (onClick = {clickAction() })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
-                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                     )
-                    Text("Lebron TR1",
+                    Text("Lebron TR1 \n$3,899",
+                        fontSize = 15.sp,
                         modifier = Modifier
                             .padding(3.dp,0.dp,0.dp,0.dp)
 
                     )
+
+
                 }
 
                 Column {
                     Image(
-                        painter = painterResource(R.drawable.tenis3),//Imagen de meses sin intereses
-                        contentDescription = "Imagen de 9 meses sin intereses",
+                        painter = painterResource(R.drawable.tenis3),//Imagen tercer par de tenis
+                        contentDescription = "Imagen de tenis Air Jordan 1 Low",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .clickable (onClick = {clickAction() })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
-                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                     )
-                    Text("Air Jordan 1 Low",
+                    Text("Air Jordan 1 Low\n$4,499",
+                        fontSize = 15.sp,
                         modifier = Modifier
                             .padding(3.dp,0.dp,0.dp,0.dp)
 
                     )
+
                 }
 
                 Column {
                     Image(
-                        painter = painterResource(R.drawable.tenis4),//Imagen hombre
-                        contentDescription = "Imagen de hombre",
+                        painter = painterResource(R.drawable.tenis4),//Imagen cuarto par de tenis
+                        contentDescription = "Imagen de tenis Nike Air Force 1 Retro ",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .clickable (onClick = {clickAction() })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
-                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                     )
-                    Text("Nike Air Force 1 Retro",
-                        modifier = Modifier
-                            .padding(3.dp,0.dp,0.dp,0.dp)
-
-                    )
-                }
-                Column {
-                    Image(
-                        painter = painterResource(R.drawable.tenis5),//Imagen de hombre corriendo
-                        contentDescription = "Hombre corriendo",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clickable (onClick = {clickAction() })
-                            .width(200.dp)
-                            .height(200.dp)
-                            .padding(5.dp)
-                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
-                    )
-                    Text("Nike Zoom Vomero Roam",
+                    Text("Nike Air Force 1 Retro\n$2,899",
+                        fontSize = 15.sp,
                         modifier = Modifier
                             .padding(3.dp,0.dp,0.dp,0.dp)
 
@@ -504,47 +495,213 @@ fun ApartadoTenis(){
                 }
                 Column {
                     Image(
-                        painter = painterResource(R.drawable.tenis6),
-                        contentDescription = "Hombre haciendo ejercicio",
+                        painter = painterResource(R.drawable.tenis5),//Imagen quinto par de tenis
+                        contentDescription = "Imagen de tenis Nike Zoom Vomero Roam",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .clickable (onClick = {clickAction() })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
-                            .border(1.dp, Color.Black, shape = RectangleShape) // Agrega un borde negro y redondo
                     )
-                    Text("Nike V2K Run",
+                    Text("Nike Zoom Vomero Roam\n$1,999",
+                        fontSize = 15.sp,
                         modifier = Modifier
                             .padding(3.dp,0.dp,0.dp,0.dp)
 
                     )
 
+
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.tenis6),//Imagen sexto par de tenis
+                        contentDescription = "Imagen de tenis Nike V2K Run",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(5.dp)
+                    )
+                    Text("Nike V2K Run\n$5,899",
+                        fontSize = 15.sp,
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
                 }
             }
         }
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun ApartadoMembersDays(){
     Row {
-        Column(
+        Box (
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxSize()
+                .height(220.dp)
+                .padding(20.dp,20.dp,20.dp,0.dp)
+        ){
 
-        ) { Text("Hola") }
-        Column (
+            Row (
+            ){
+                Column { Image(
+                    painter = painterResource(R.drawable.mg1),
+                    contentDescription = "Nike Mercurial",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clickable (onClick = {clickAction() })
+                        .width(150.dp)
+                        .height(150.dp)
+                        .padding(1.dp)
+                )
+                    Text("Nike Mercurial \n$1,689",
+                        fontSize = 15.sp,
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,6.dp,0.dp)
 
-        ){ Text("Hola 2") }
-        Column (
+                    )
 
-        ){ Text("Hola 3") }
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.mg2),
+                        contentDescription = "Nike Mercurial Super ",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(150.dp)
+                            .height(150.dp)
+                            .padding(1.dp)
+                    )
+                    Text("Nike Mercurial Super \n$1,689",
+                        fontSize = 15.sp,
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,2.dp,0.dp)
+                    )
+
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.mg3),
+                        contentDescription = "Nike Free Metcon",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(150.dp)
+                            .height(150.dp)
+                            .padding(1.dp)
+                    )
+                    Text("Nike Free Metcon 6 \n$1,884",
+                        fontSize = 15.sp,
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,3.dp,0.dp)
+                    )
+                }
 
 
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ApartadoMembersDays2(){
+    Row {
+        Box (
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxSize()
+                .background(Color.Transparent)
+                .height(270.dp)
+                .padding(20.dp,2.dp,20.dp,0.dp)
+        ){
+
+            Row (
+            ){
+                Column { Image(
+                    painter = painterResource(R.drawable.mg4),
+                    contentDescription = "Nike Zoom GP",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clickable (onClick = {clickAction() })
+                        .width(150.dp)
+                        .height(150.dp)
+                        .padding(2.dp)
+                )
+                    Text("Nike Zoom GP... \n$2,534",
+                        fontSize = 15.sp,
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+
+                    )
+
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.mp5),
+                        contentDescription = "Nike Air Max 90",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(150.dp)
+                            .height(150.dp)
+                            .padding(2.dp)
+                    )
+                    Text("Nike Air Max 90 \n$1,949",
+                        fontSize = 15.sp,
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,0.dp,0.dp)
+                    )
+                }
+                Column {
+                    Image(
+                        painter = painterResource(R.drawable.mp6),
+                        contentDescription = "Nike Rise 365",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clickable (onClick = {clickAction() })
+                            .width(150.dp)
+                            .height(150.dp)
+                            .padding(2.dp)
+                    )
+                    Text("Nike Rise 365 \n$746 ",
+                        fontSize = 15.sp,
+                        modifier = Modifier
+                            .padding(3.dp,0.dp,3.dp,0.dp)
+                    )
+                }
+
+
+            }
+        }
+    }
+}
+
+@Composable
+fun BotonFinal(navController: NavHostController){
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(
+            onClick = { navController.navigate("interface_screen") }
+        ) {
+            Text("Ver Todo")
+        }
     }
 
 }
+
+
+
+
 
 
 

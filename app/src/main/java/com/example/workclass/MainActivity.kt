@@ -14,10 +14,6 @@ import com.example.workclass.ui.screens.MainMenuScreen
 import com.example.workclass.ui.screens.TestScreen
 import com.example.workclass.ui.theme.WorkClassTheme
 
-
-
-
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +26,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 } //CLOSE CLASS
-
 
 @Composable
 fun ComposeMultiScreenApp() { //La navegacion entre pantallas
