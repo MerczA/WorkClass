@@ -30,5 +30,12 @@ Column(
     ) {
         Text("Go to Test Screen")
     }
+
+    Button(
+        onClick = { navController.navigate("interface_screen")}
+
+    ) {
+        Text("Go to Nike App")
+    }
 }
 }
