@@ -3,10 +3,17 @@ package com.example.workclass.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -18,10 +25,11 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun ComponentScreen(navController: NavHostController){
-buttons()
+//buttons()
+    FloatingButtons()
 
 }
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun buttons(){
     Column(
@@ -30,20 +38,59 @@ fun buttons(){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Button(onClick = {}) {
+        Button(onClick = {}) {//Boton ajustado al tamaño del texto
             Text("Filled")
         }
         FilledTonalButton(onClick = {}) {
             Text("TonalButton")
         }
-        OutlinedButton (onClick = {}) {
+        OutlinedButton (onClick = {}) { //Boton con solo contornos
             Text("OutLine")
         }
-        ElevatedButton(onClick = {}) {
+        ElevatedButton(onClick = {}) {//Boton con relleno
             Text("ElevatedButton")
         }
-        TextButton (onClick = {}) {
+        TextButton (onClick = {}) {//Boton con solo Texto
             Text("Text")
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun FloatingButtons(){
+    Column(
+        modifier = Modifier
+            .fillMaxSize(), //Para que ocupe el 100% de mi pantalla
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        FloatingActionButton(
+            onClick = {}
+        ) {
+            Icon(Icons.Filled.Add, contentDescription = "Add Button")
+
+        }
+        SmallFloatingActionButton (
+            onClick = {}
+        ) {
+            Icon(Icons.Filled.Add, contentDescription = "Add Button")
+
+        }
+        LargeFloatingActionButton (
+            onClick = {}
+        ) {
+            Icon(Icons.Filled.Add, contentDescription = "Add Button")
+
+        }
+        ExtendedFloatingActionButton( //Boton rectangular
+            onClick = {}
+        ) {
+            Icon(Icons.Filled.Add, contentDescription = "Add Button")
+            Text("Button")
+
+        }
+
+
+    }
+    }
