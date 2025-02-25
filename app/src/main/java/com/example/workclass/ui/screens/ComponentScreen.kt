@@ -26,6 +26,7 @@ import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Slider
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -36,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -46,8 +48,8 @@ fun ComponentScreen(navController: NavHostController){
 //buttons()
     //FloatingButtons()
     //Progress()
-    Chips()
-
+    //Chips()
+    Sliders()
 }
 //@Preview(showBackground = true)
 @Composable
@@ -136,7 +138,7 @@ fun Progress() { //Indicadores de progreso
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun Chips() { //Acciones rapidas
     Column(
@@ -218,4 +220,29 @@ fun InputChipExample(
     )
 
 
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Sliders() { //Barra con porcentaje y modificable
+    Column(
+        modifier = Modifier
+            .fillMaxSize(), //Para que ocupe el 100% de mi pantalla
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly
+    ) {
+
+        var sliderposition by remember { mutableStateOf(50f) }
+        Slider(
+            value = sliderposition,
+            onValueChange = {sliderposition = it }, //Nos permite que la variable se actualiza conforme con la interaccion del usuario
+            steps = 10,
+            valueRange = 0f .. 100f
+        )
+        Text(
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+            text = sliderposition.toString()
+        )
+    }
 }
