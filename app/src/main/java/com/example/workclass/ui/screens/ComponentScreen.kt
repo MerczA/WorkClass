@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -28,6 +30,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SmallFloatingActionButton
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -45,11 +48,12 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun ComponentScreen(navController: NavHostController){
-//buttons()
+    //buttons()
     //FloatingButtons()
     //Progress()
     //Chips()
-    Sliders()
+    //Sliders()
+    Switches()
 }
 //@Preview(showBackground = true)
 @Composable
@@ -222,7 +226,7 @@ fun InputChipExample(
 
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun Sliders() { //Barra con porcentaje y modificable
     Column(
@@ -246,3 +250,46 @@ fun Sliders() { //Barra con porcentaje y modificable
         )
     }
 }
+@Preview(showBackground = true)
+@Composable
+fun Switches() { //Barra con porcentaje y modificable
+    Column(
+        modifier = Modifier
+            .fillMaxSize(), //Para que ocupe el 100% de mi pantalla
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly
+    ) {
+        var checked by remember { mutableStateOf(true) }
+        Switch( //Switch que nos ayuda a saber si una opcion esta habilitada o no
+            checked = checked,
+            onCheckedChange = {checked = it }
+        )
+
+        var checked2 by remember { mutableStateOf(true) }
+        Switch(//Switch que nos ayuda a saber si una opcion esta habilitada o no con un icono de una palomita dentro
+            checked = checked2,
+            onCheckedChange = {checked2 = it },
+            thumbContent = if(checked2){
+                {
+                    Icon(
+                        Icons.Filled.Check,
+                        contentDescription = "Switch Check",
+                        Modifier.size(InputChipDefaults.AvatarSize)
+                    )
+                }
+            }else {
+                null
+                }
+        )
+        var checked3 by remember { mutableStateOf(true) }
+
+        Checkbox( //Boton para marcar si se completo una tarea
+            checked =  checked3,
+            onCheckedChange = {checked3 = it}
+        )
+
+    }
+    }
+
+
+
