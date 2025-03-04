@@ -371,7 +371,7 @@ fun SnackBars() { //Barra de notificacion
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)//Api
 @Preview(showBackground = true)
 @Composable
 fun AlertDialogs() { //Mensaje como notificacion con confirmacion por ejemplo si queremos borrar un archivo
