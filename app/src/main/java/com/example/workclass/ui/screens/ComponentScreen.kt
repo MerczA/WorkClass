@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
@@ -562,6 +563,20 @@ fun Bars() {
         )
 
         LazyColumn(
+            modifier = Modifier
+                .weight(1f) // Permite que la lista ocupe el espacio disponible
+                .fillMaxSize()
+        ) {
+            items(arrayPost) { item ->
+                PostCardComponent(
+                    item.id,
+                    item.title,
+                    item.text,
+                    item.iamge
+                )
+            }
+        }
+        LazyRow(
             modifier = Modifier
                 .weight(1f) // Permite que la lista ocupe el espacio disponible
                 .fillMaxSize()
