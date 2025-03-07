@@ -85,12 +85,13 @@ fun ComponentScreen(navController: NavHostController){
     val menuOptions = arrayOf(
         MenuModel(1,"Buttons","option1",Icons.Filled.AccountBox),
         MenuModel(2,"Floating Buttons","option2",Icons.Filled.Call),
-        MenuModel(3,"Chips","option3",Icons.Filled.Star),
-        MenuModel(3,"Sliders","option4",Icons.Filled.DateRange),
-        MenuModel(3,"Switches","option5",Icons.Filled.PlayArrow),
-        MenuModel(3,"Badges","option6",Icons.Filled.Warning),
-        MenuModel(3,"Snack Bar","option7",Icons.Filled.MailOutline),
-        MenuModel(3,"Alert Dialogs","option8",Icons.Filled.ThumbUp)
+        MenuModel(3,"Progress","option3",Icons.Filled.Call),
+        MenuModel(4,"Chips","option4",Icons.Filled.Star),
+        MenuModel(5,"Sliders","option5",Icons.Filled.DateRange),
+        MenuModel(6,"Switches","option6",Icons.Filled.PlayArrow),
+        MenuModel(7,"Badges","option7",Icons.Filled.Warning),
+        MenuModel(8,"Snack Bar","option8",Icons.Filled.MailOutline),
+        MenuModel(9,"Alert Dialogs","option9",Icons.Filled.ThumbUp)
     )
 
     var option by rememberSaveable { mutableStateOf("") }
