@@ -8,28 +8,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ThumbUp
@@ -70,6 +62,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -85,12 +78,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.workclass.R
 import com.example.workclass.data.model.MenuModel
-import com.example.workclass.data.model.PostCardModel
-import com.example.workclass.ui.components.PostCardComponent
 import kotlinx.coroutines.launch
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun ComponentScreen(navController: NavHostController){
@@ -104,7 +93,9 @@ fun ComponentScreen(navController: NavHostController){
         MenuModel(7,"Badges","option7",Icons.Filled.Warning),
         MenuModel(8,"Snack Bar","option8",Icons.Filled.MailOutline),
         MenuModel(9,"Alert Dialogs","option9",Icons.Filled.ThumbUp),
-        MenuModel(10,"Bar","option10",Icons.Filled.ThumbUp)
+        MenuModel(10,"Bar","option10",Icons.Filled.ThumbUp),
+        MenuModel(11,"Info","option11",Icons.Filled.ThumbUp)
+
 
     )
 
@@ -170,6 +161,9 @@ fun ComponentScreen(navController: NavHostController){
                 }
                 "option10" -> {
                     Bars()
+                }
+                "option11" -> {
+                    Adaptive()
                 }
 
 
@@ -556,13 +550,19 @@ fun Bars() {
         )
 
         // Lista de elementos con peso para ocupar el espacio disponible
-        val arrayPost = arrayOf(
+        /*val arrayPost = arrayOf(
             PostCardModel(1, "Title1", "Text1", R.drawable.logo_android),
             PostCardModel(2, "Title2", "Text2", R.drawable.tenis2),
-            PostCardModel(3, "Title3", "Text3", R.drawable.mg1)
+            PostCardModel(3, "Title3", "Text3", R.drawable.mg1),
+            PostCardModel(1, "Title4", "Text4", R.drawable.logo_android),
+            PostCardModel(2, "Title5", "Text5", R.drawable.tenis2),
+            PostCardModel(3, "Title6", "Text6", R.drawable.mg1),
+            PostCardModel(1, "Title7", "Text7", R.drawable.logo_android),
+            PostCardModel(2, "Title8", "Text8", R.drawable.tenis2),
+            PostCardModel(3, "Title9", "Text9", R.drawable.mg1)
         )
 
-        LazyColumn(
+        /*LazyColumn(
             modifier = Modifier
                 .weight(1f) // Permite que la lista ocupe el espacio disponible
                 .fillMaxSize()
@@ -575,20 +575,31 @@ fun Bars() {
                     item.iamge
                 )
             }
-        }
-        LazyRow(
+        }*/
+        LazyVerticalGrid (
+            columns = GridCells.Adaptive(minSize = 160.dp),
             modifier = Modifier
                 .weight(1f) // Permite que la lista ocupe el espacio disponible
                 .fillMaxSize()
         ) {
             items(arrayPost) { item ->
-                PostCardComponent(
+                PostCardCompactComponent(
                     item.id,
                     item.title,
                     item.text,
                     item.iamge
                 )
             }
+        }*/
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxSize()
+        ) {
+
+            Adaptive()
+
         }
 
         // BottomAppBar en la parte inferior
@@ -615,5 +626,26 @@ fun Bars() {
     }
 }
 
+@Composable
+fun Adaptive(){
+    var windowSize = currentWindowAdaptiveInfo().windowSizeClass
+    var heigt = currentWindowAdaptiveInfo().windowSizeClass.windowHeightSizeClass
+    var width = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
+    // Compact width < 600 dp Phone Portrait
+    // Medium width >= 600 dp < 840 dp Tablet Portrait
+    // Expanded width >= 840 dp Tablet LandScape
+
+    //Compact height < 480 dp Phone Landscape
+    // Medium height >= 480 dp < 900 dp Tablet LandScape or Phone Portrait
+    // Expanded height >=900 dp Tablet Portrait
+
+    Column {
+        Text(windowSize.toString())
+        Text(heigt.toString())
+        Text(width.toString())
+
+    }
+
+}
 
 
