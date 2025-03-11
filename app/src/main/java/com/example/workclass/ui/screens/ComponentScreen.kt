@@ -49,6 +49,7 @@ import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -63,6 +64,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowSize
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -78,7 +80,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.window.core.layout.WindowHeightSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
+import com.example.workclass.R
 import com.example.workclass.data.model.MenuModel
+import com.example.workclass.data.model.PostCardModel
+import com.example.workclass.ui.components.PostCardCompactComponent
+import com.example.workclass.ui.components.PostCardComponent
 import kotlinx.coroutines.launch
 
 @Composable
@@ -535,8 +543,8 @@ fun Bars() {
         // TopAppBar en la parte superior
         TopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = Color.Black,
-                titleContentColor = Color.White
+                containerColor = MaterialTheme.colorScheme.primary,
+                titleContentColor = MaterialTheme.colorScheme.secondary
             ),
             title = { Text("Screen Title") },
             actions = {
@@ -597,15 +605,13 @@ fun Bars() {
                 .weight(1f)
                 .fillMaxSize()
         ) {
-
             Adaptive()
-
         }
 
         // BottomAppBar en la parte inferior
         BottomAppBar(
-            containerColor = Color.Black,
-            contentColor = Color.White
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.secondary
         ) {
             IconButton(modifier = Modifier.weight(1f), onClick = {}) {
                 Icon(imageVector = Icons.Filled.Person, contentDescription = "Person")
@@ -628,7 +634,7 @@ fun Bars() {
 
 
 @Composable
-fun Adaptive(){
+fun Adaptive() {
     var windowSize = currentWindowAdaptiveInfo().windowSizeClass
     var heigt = currentWindowAdaptiveInfo().windowSizeClass.windowHeightSizeClass
     var width = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
@@ -640,13 +646,53 @@ fun Adaptive(){
     // Medium height >= 480 dp < 900 dp Tablet LandScape or Phone Portrait
     // Expanded height >=900 dp Tablet Portrait
 
-    Column {
-        Text(windowSize.toString())
-        Text(heigt.toString())
-        Text(width.toString())
+// Lista de elementos con peso para ocupar el espacio disponible
+    val arrayPost = arrayOf(
+        PostCardModel(1, "Title1", "Text1", R.drawable.logo_android),
+        PostCardModel(2, "Title2", "Text2", R.drawable.tenis2),
+        PostCardModel(3, "Title3", "Text3", R.drawable.mg1),
+        PostCardModel(1, "Title4", "Text4", R.drawable.logo_android),
+        PostCardModel(2, "Title5", "Text5", R.drawable.tenis2),
+        PostCardModel(3, "Title6", "Text6", R.drawable.mg1),
+        PostCardModel(1, "Title7", "Text7", R.drawable.logo_android),
+        PostCardModel(2, "Title8", "Text8", R.drawable.tenis2),
+        PostCardModel(3, "Title9", "Text9", R.drawable.mg1)
+    )
+    if (width == WindowWidthSizeClass.COMPACT) {
+        LazyColumn(
+            modifier = Modifier
+                // Permite que la lista ocupe el espacio disponible
+                .fillMaxSize()
+        ) {
+            items(arrayPost) { item ->
+                PostCardComponent(
+                    item.id,
+                    item.title,
+                    item.text,
+                    item.iamge
+                )
+            }
+        }
+    } else if (heigt == WindowHeightSizeClass.COMPACT) {
+        if (width == WindowWidthSizeClass.COMPACT) {
+            LazyColumn(
+                modifier = Modifier
+                    // Permite que la lista ocupe el espacio disponible
+                    .fillMaxSize()
+            ) {
+                items(arrayPost) { item ->
+                    PostCardCompactComponent(
+                        item.id,
+                        item.title,
+                        item.text,
+                        item.iamge
+                    )
+                }
 
+            }
+
+        }
     }
-
 }
 
 
