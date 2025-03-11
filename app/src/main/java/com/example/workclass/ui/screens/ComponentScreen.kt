@@ -102,7 +102,6 @@ fun ComponentScreen(navController: NavHostController){
         MenuModel(8,"Snack Bar","option8",Icons.Filled.MailOutline),
         MenuModel(9,"Alert Dialogs","option9",Icons.Filled.ThumbUp),
         MenuModel(10,"Bar","option10",Icons.Filled.ThumbUp),
-        MenuModel(11,"Info","option11",Icons.Filled.ThumbUp)
 
 
     )
@@ -170,9 +169,7 @@ fun ComponentScreen(navController: NavHostController){
                 "option10" -> {
                     Bars()
                 }
-                "option11" -> {
-                    Adaptive()
-                }
+
 
 
             }
