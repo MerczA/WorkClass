@@ -626,6 +626,7 @@ fun Bars() {
     }
 }
 
+
 @Composable
 fun Adaptive(){
     var windowSize = currentWindowAdaptiveInfo().windowSizeClass
