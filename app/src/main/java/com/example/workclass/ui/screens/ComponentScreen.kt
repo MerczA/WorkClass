@@ -1,8 +1,7 @@
 package com.example.workclass.ui.screens
 
-import androidx.compose.foundation.gestures.awaitEachGesture
-import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.gestures.waitForUpOrCancellation
+
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -81,12 +80,11 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.material3.adaptive.currentWindowSize
-import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -97,8 +95,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerEventPass
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -110,10 +106,13 @@ import com.example.workclass.data.model.MenuModel
 import com.example.workclass.data.model.PostCardModel
 import com.example.workclass.ui.components.PostCardCompactComponent
 import com.example.workclass.ui.components.PostCardComponent
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+
+
+
 
 @Composable
 fun ComponentScreen(navController: NavHostController){
@@ -681,21 +680,13 @@ fun Bars() {
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Adaptive() {
-    var windowSize = currentWindowAdaptiveInfo().windowSizeClass
-    var heigt = currentWindowAdaptiveInfo().windowSizeClass.windowHeightSizeClass
-    var width = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
-    // Compact width < 600 dp Phone Portrait
-    // Medium width >= 600 dp < 840 dp Tablet Portrait
-    // Expanded width >= 840 dp Tablet LandScape
+    val windowSize = currentWindowAdaptiveInfo().windowSizeClass
+    val height = currentWindowAdaptiveInfo().windowSizeClass.windowHeightSizeClass
+    val width = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
 
-    //Compact height < 480 dp Phone Landscape
-    // Medium height >= 480 dp < 900 dp Tablet LandScape or Phone Portrait
-    // Expanded height >=900 dp Tablet Portrait
-
-// Lista de elementos con peso para ocupar el espacio disponible
+    // Lista de elementos con peso para ocupar el espacio disponible
     val arrayPost = arrayOf(
         PostCardModel(1, "Title1", "Text1", R.drawable.logo_android),
         PostCardModel(2, "Title2", "Text2", R.drawable.tenis2),
@@ -707,43 +698,59 @@ fun Adaptive() {
         PostCardModel(2, "Title8", "Text8", R.drawable.tenis2),
         PostCardModel(3, "Title9", "Text9", R.drawable.mg1)
     )
-    if (width == WindowWidthSizeClass.COMPACT) {
-        LazyColumn(
-            modifier = Modifier
-                // Permite que la lista ocupe el espacio disponible
-                .fillMaxSize()
-        ) {
-            items(arrayPost) { item ->
-                PostCardComponent(
-                    item.id,
-                    item.title,
-                    item.text,
-                    item.iamge
-                )
-            }
-        }
-    } else if (heigt == WindowHeightSizeClass.COMPACT) {
+
+    // Estado para manejar el refresco
+    var isRefreshing by remember { mutableStateOf(false) }
+
+    // Función para manejar el refresco
+    val onRefresh: () -> Unit = {
+        isRefreshing = true
+        // Simula un retraso de actualización, por ejemplo, recargando los datos.
+        // Aquí deberías llamar a la función que recarga los datos o hace la actualización real
+
+    }
+
+    // Usando SwipeRefresh
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing)
+
+    // Llamando la interfaz de usuario dentro de la función composable
+    SwipeRefresh(
+        state = swipeRefreshState,
+        onRefresh = onRefresh,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        // Verificación de tamaños de la ventana
         if (width == WindowWidthSizeClass.COMPACT) {
             LazyColumn(
-                modifier = Modifier
-                    // Permite que la lista ocupe el espacio disponible
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
             ) {
                 items(arrayPost) { item ->
-                    PostCardCompactComponent(
+                    PostCardComponent(
                         item.id,
                         item.title,
                         item.text,
                         item.iamge
                     )
                 }
-
             }
-
+        } else if (height == WindowHeightSizeClass.COMPACT) {
+            if (width == WindowWidthSizeClass.COMPACT) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(arrayPost) { item ->
+                        PostCardCompactComponent(
+                            item.id,
+                            item.title,
+                            item.text,
+                            item.iamge
+                        )
+                    }
+                }
+            }
         }
     }
 }
-
 
 
 
@@ -755,6 +762,8 @@ fun InputFields() {
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         var text by remember { mutableStateOf("") }
+        var text2 by remember { mutableStateOf("") }
+
 
         OutlinedTextField(
             value = text,
@@ -762,8 +771,8 @@ fun InputFields() {
             label = { Text("Usuario") }
         )
         OutlinedTextField(
-            value = text,
-            onValueChange = { text = it },
+            value = text2,
+            onValueChange = { text2 = it },
             label = { Text("Contraseña") }
         )
 
@@ -846,10 +855,14 @@ fun BottomSheets() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SegmentedButtons(modifier: Modifier = Modifier) {
+
     var selectedIndex by remember { mutableIntStateOf(0) }
     val options = listOf("Day", "Month", "Week")
 
-    SingleChoiceSegmentedButtonRow { //este boton es unico (solo se muestra una opcion)
+    SingleChoiceSegmentedButtonRow (
+        modifier = Modifier
+            .fillMaxSize(),
+    ){ //este boton es unico (solo se muestra una opcion)
         options.forEachIndexed { index, label ->
             SegmentedButton(
                 shape = SegmentedButtonDefaults.itemShape(
@@ -863,5 +876,7 @@ fun SegmentedButtons(modifier: Modifier = Modifier) {
         }
     }
 }
+
+
 
 
