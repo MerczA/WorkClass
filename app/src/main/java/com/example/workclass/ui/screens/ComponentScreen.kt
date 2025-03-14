@@ -679,7 +679,6 @@ fun Bars() {
     }
 }
 
-
 @Composable
 fun Adaptive() {
     val windowSize = currentWindowAdaptiveInfo().windowSizeClass
@@ -752,8 +751,6 @@ fun Adaptive() {
     }
 }
 
-
-
 @Composable
 fun InputFields() {
     Column(
@@ -795,6 +792,7 @@ fun DatePickerModal(
                 onDismiss()
             }) {
                 Text("OK")
+
             }
         },
         dismissButton = {
@@ -806,8 +804,6 @@ fun DatePickerModal(
         DatePicker(state = datePickerState)
     }
 }
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
