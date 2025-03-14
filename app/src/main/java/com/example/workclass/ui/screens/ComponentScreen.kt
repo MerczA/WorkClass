@@ -1,6 +1,10 @@
 package com.example.workclass.ui.screens
 
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,16 +16,21 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.MailOutline
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ThumbUp
@@ -35,6 +44,8 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -50,10 +61,16 @@ import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.SnackbarHost
@@ -65,9 +82,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowSize
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -76,6 +97,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -88,6 +111,9 @@ import com.example.workclass.data.model.PostCardModel
 import com.example.workclass.ui.components.PostCardCompactComponent
 import com.example.workclass.ui.components.PostCardComponent
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun ComponentScreen(navController: NavHostController){
@@ -101,10 +127,15 @@ fun ComponentScreen(navController: NavHostController){
         MenuModel(7,"Badges","option7",Icons.Filled.Warning),
         MenuModel(8,"Snack Bar","option8",Icons.Filled.MailOutline),
         MenuModel(9,"Alert Dialogs","option9",Icons.Filled.ThumbUp),
-        MenuModel(10,"Bar","option10",Icons.Filled.ThumbUp),
+        MenuModel(10,"Bars","option10",Icons.Filled.Create),
+        MenuModel(10,"Input Fields","option11",Icons.Filled.Share),
+        MenuModel(10,"Date pickers","option12",Icons.Filled.ArrowForward),
+        MenuModel(10,"Bottom sheets","option13",Icons.Filled.MoreVert),
+        MenuModel(10,"Segmented Buttons","option14",Icons.Filled.FavoriteBorder),
 
 
-    )
+
+        )
 
     var option by rememberSaveable { mutableStateOf("") }
     var drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)//
@@ -169,6 +200,26 @@ fun ComponentScreen(navController: NavHostController){
                 "option10" -> {
                     Bars()
                 }
+                "option11" -> {
+                    InputFields()
+                }
+                "option12" -> {
+                    DatePickerModal(onDateSelected = { selectedDate ->
+                        // Manejar la fecha seleccionada aquí
+                        println("Fecha seleccionada: $selectedDate")
+                    },
+                        onDismiss = {
+                            // Manejar el cierre del diálogo aquí
+                            println("DatePicker cerrado")
+                        })
+                }
+                "option13" -> {
+                    BottomSheets()
+                }
+                "option14" -> {
+                    SegmentedButtons()
+                }
+
 
 
 
@@ -630,6 +681,7 @@ fun Bars() {
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Adaptive() {
     var windowSize = currentWindowAdaptiveInfo().windowSizeClass
@@ -688,6 +740,126 @@ fun Adaptive() {
 
             }
 
+        }
+    }
+}
+
+
+
+
+@Composable
+fun InputFields() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize(), //Para que ocupe el 100% de mi pantalla
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        var text by remember { mutableStateOf("") }
+
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Usuario") }
+        )
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Contraseña") }
+        )
+
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DatePickerModal(
+    onDateSelected: (Long?) -> Unit,
+    onDismiss: () -> Unit
+) {
+    val datePickerState = rememberDatePickerState()
+
+    DatePickerDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            TextButton(onClick = {
+                onDateSelected(datePickerState.selectedDateMillis)
+                onDismiss()
+            }) {
+                Text("OK")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel")
+            }
+        }
+    ) {
+        DatePicker(state = datePickerState)
+    }
+}
+
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BottomSheets() {
+    val sheetState = rememberModalBottomSheetState()
+    val scope = rememberCoroutineScope()
+    var showBottomSheet by remember { mutableStateOf(false) }
+
+    Scaffold(
+        floatingActionButton = { //muestra la hoja
+            ExtendedFloatingActionButton(
+                text = { Text("Show bottom sheet") },
+                icon = { Icon(Icons.Filled.Add, contentDescription = "") },
+                onClick = {
+                    showBottomSheet = true
+                }
+            )
+        }
+    ) { contentPadding ->
+        // Se utiliza contentPadding aquí para evitar error
+        Box(modifier = Modifier.padding(contentPadding)) {
+            if (showBottomSheet) {
+                ModalBottomSheet(
+                    onDismissRequest = {
+                        showBottomSheet = false
+                    },
+                    sheetState = sheetState
+                ) {
+                    // Sheet content
+                    Button(onClick = {
+                        scope.launch { sheetState.hide() }.invokeOnCompletion {
+                            if (!sheetState.isVisible) {
+                                showBottomSheet = false
+                            }
+                        }
+                    }) {
+                        Text("Hide bottom sheet")
+                    }
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SegmentedButtons(modifier: Modifier = Modifier) {
+    var selectedIndex by remember { mutableIntStateOf(0) }
+    val options = listOf("Day", "Month", "Week")
+
+    SingleChoiceSegmentedButtonRow { //este boton es unico (solo se muestra una opcion)
+        options.forEachIndexed { index, label ->
+            SegmentedButton(
+                shape = SegmentedButtonDefaults.itemShape(
+                    index = index,
+                    count = options.size
+                ),
+                onClick = { selectedIndex = index },
+                selected = index == selectedIndex,
+                label = { Text(label) }
+            )
         }
     }
 }
