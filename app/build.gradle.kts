@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.adaptive.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -59,4 +60,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.31.2-alpha")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
+
+
+
 }
+
