@@ -101,7 +101,7 @@ fun InterfazNike(navController: NavHostController) {
                     fontSize = 15.sp, //Tamaño de la letra
                     modifier = Modifier
                         .padding(25.dp,0.dp,0.dp,0.dp)
-                        .clickable (onClick = {clickAction() })
+                        .clickable (onClick = { })
 
                 )
             }
@@ -233,7 +233,7 @@ fun BarraCat(){ //Categorias entre Man,Woman and kids
                 fontSize = 17.sp,
                 modifier = Modifier
                     .padding(30.dp,0.dp,0.dp,0.dp)
-                    .clickable (onClick = {clickAction() }
+                    .clickable (onClick = { }
                     )
             )
             Row {
@@ -243,7 +243,7 @@ fun BarraCat(){ //Categorias entre Man,Woman and kids
                     fontSize = 17.sp,
                     modifier = Modifier
                         .padding(30.dp,0.dp,0.dp,30.dp)
-                        .clickable (onClick = {clickAction() }
+                        .clickable (onClick = { }
                         )
                         )
                 Text(
@@ -252,7 +252,7 @@ fun BarraCat(){ //Categorias entre Man,Woman and kids
                     fontSize = 17.sp,
                     modifier = Modifier
                         .padding(30.dp,0.dp,0.dp,30.dp)
-                        .clickable (onClick = {clickAction() }
+                        .clickable (onClick = { }
                         )
                         )
             }
@@ -281,7 +281,7 @@ fun Discount(){
                 contentDescription = "Imagen de 30% de descuento",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .clickable (onClick = {clickAction() })
+                    .clickable (onClick = { })
                     .width(200.dp)
                     .height(200.dp)
                     .padding(5.dp)
@@ -299,7 +299,7 @@ fun Discount(){
                     contentDescription = "Imagen de 20% de descuento",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .clickable (onClick = {clickAction() })
+                        .clickable (onClick = { })
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
@@ -315,7 +315,7 @@ fun Discount(){
                     contentDescription = "Imagen de 9 meses sin intereses",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .clickable (onClick = {clickAction() })
+                        .clickable (onClick = { })
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
@@ -331,7 +331,7 @@ fun Discount(){
                contentDescription = "Imagen de hombre",
                contentScale = ContentScale.Crop,
                modifier = Modifier
-                   .clickable (onClick = {clickAction() })
+                   .clickable (onClick = { })
                    .width(200.dp)
                    .height(200.dp)
                    .padding(5.dp)
@@ -349,7 +349,7 @@ fun Discount(){
                     contentDescription = "Hombre corriendo",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .clickable (onClick = {clickAction() })
+                        .clickable (onClick = { })
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
@@ -366,7 +366,7 @@ fun Discount(){
                    contentDescription = "Hombre haciendo ejercicio",
                    contentScale = ContentScale.Crop,
                    modifier = Modifier
-                       .clickable (onClick = {clickAction() })
+                       .clickable (onClick = { })
                        .width(200.dp)
                        .height(200.dp)
                        .padding(5.dp)
@@ -383,7 +383,7 @@ fun Discount(){
                     contentDescription = "Hombre practicando deporte",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .clickable (onClick = {clickAction() })
+                        .clickable (onClick = { })
                         .width(200.dp)
                         .height(200.dp)
                         .padding(5.dp)
@@ -421,7 +421,7 @@ fun ApartadoTenis(){
                         contentDescription = "Imagen de par de tenis Air Jordan Legacy 321 Low",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
@@ -439,7 +439,7 @@ fun ApartadoTenis(){
                         contentDescription = "Imagen de tenis Lebron TR1",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
@@ -460,7 +460,7 @@ fun ApartadoTenis(){
                         contentDescription = "Imagen de tenis Air Jordan 1 Low",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
@@ -480,7 +480,7 @@ fun ApartadoTenis(){
                         contentDescription = "Imagen de tenis Nike Air Force 1 Retro ",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
@@ -499,7 +499,7 @@ fun ApartadoTenis(){
                         contentDescription = "Imagen de tenis Nike Zoom Vomero Roam",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
@@ -519,7 +519,7 @@ fun ApartadoTenis(){
                         contentDescription = "Imagen de tenis Nike V2K Run",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(200.dp)
                             .height(200.dp)
                             .padding(5.dp)
@@ -555,7 +555,7 @@ fun ApartadoMembersDays(){
                     contentDescription = "Nike Mercurial",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .clickable (onClick = {clickAction() })
+                        .clickable (onClick = { })
                         .width(150.dp)
                         .height(150.dp)
                         .padding(1.dp)
@@ -574,7 +574,7 @@ fun ApartadoMembersDays(){
                         contentDescription = "Nike Mercurial Super ",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(150.dp)
                             .height(150.dp)
                             .padding(1.dp)
@@ -592,7 +592,7 @@ fun ApartadoMembersDays(){
                         contentDescription = "Nike Free Metcon",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(150.dp)
                             .height(150.dp)
                             .padding(1.dp)
@@ -630,7 +630,7 @@ fun ApartadoMembersDays2(){
                     contentDescription = "Nike Zoom GP",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .clickable (onClick = {clickAction() })
+                        .clickable (onClick = { })
                         .width(150.dp)
                         .height(150.dp)
                         .padding(2.dp)
@@ -649,7 +649,7 @@ fun ApartadoMembersDays2(){
                         contentDescription = "Nike Air Max 90",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(150.dp)
                             .height(150.dp)
                             .padding(2.dp)
@@ -666,7 +666,7 @@ fun ApartadoMembersDays2(){
                         contentDescription = "Nike Rise 365",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .clickable (onClick = {clickAction() })
+                            .clickable (onClick = { })
                             .width(150.dp)
                             .height(150.dp)
                             .padding(2.dp)
