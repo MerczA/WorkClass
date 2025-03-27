@@ -60,8 +60,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("com.google.accompanist:accompanist-swiperefresh:0.31.2-alpha")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation(libs.accompanist.swiperefresh)
+    implementation (libs.kotlinx.coroutines.android)
+    //Coil Async
+    //implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation(libs.coil.kt.coil.compose)
+
+
+
 
 
 

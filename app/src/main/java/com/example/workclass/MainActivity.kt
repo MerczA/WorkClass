@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.workclass.ui.screens.ComponentScreen
 import com.example.workclass.ui.screens.HomeScreen
 import com.example.workclass.ui.screens.InterfazNike
+import com.example.workclass.ui.screens.LoginScreen
 import com.example.workclass.ui.screens.MainMenuScreen
 import com.example.workclass.ui.screens.TestScreen
 import com.example.workclass.ui.theme.WorkClassTheme
@@ -42,6 +43,8 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
         composable("test_screen") { TestScreen(navController) }
         composable("interface_screen") { InterfazNike(navController) }
         composable("components_screen") { ComponentScreen(navController) }
+        composable("Login_Screen") { LoginScreen(navController) }
+
 
     }
 }
