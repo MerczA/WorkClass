@@ -9,7 +9,7 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
 
 
-class UserViewModel:ViewModel(){
+class UserViewModel : ViewModel() {
     val api = RetrofitClient.api
 
     fun loginApi(user_model: UserModel, onResult: (JsonObject?) -> Unit){
