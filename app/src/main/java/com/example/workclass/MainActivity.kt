@@ -14,6 +14,7 @@ import com.example.workclass.ui.screens.HomeScreen
 import com.example.workclass.ui.screens.InterfazNike
 import com.example.workclass.ui.screens.LoginScreen
 import com.example.workclass.ui.screens.MainMenuScreen
+import com.example.workclass.ui.screens.ManageAccountScreen
 import com.example.workclass.ui.screens.TestScreen
 import com.example.workclass.ui.theme.WorkClassTheme
 
@@ -46,9 +47,7 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
         composable("components_screen") { ComponentScreen(navController) }
         composable("Login_Screen") { LoginScreen(navController) }
         composable("accounts_screen") { AccountScreen(navController) }
-
-
-
+        composable("manage_account_screen") { ManageAccountScreen(navController) }
     }
 }
 

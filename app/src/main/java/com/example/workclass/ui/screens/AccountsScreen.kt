@@ -37,7 +37,7 @@ fun AccountScreen(
     var accountDetail by remember { mutableStateOf<AccountModel?>(null) }
 
     Column {
-        TopBarComponent("Accounts")
+        TopBarComponent("Accounts",navController, "accounts_screen")
 
         LaunchedEffect(Unit) {
             viewModel.getAccounts { response ->

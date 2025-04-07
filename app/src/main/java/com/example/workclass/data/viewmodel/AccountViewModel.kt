@@ -35,5 +35,24 @@ class AccountViewModel: ViewModel() {
             }
 
         }
+
+    }
+    fun createAccount(service:AccountModel, onResult:(JsonObject?)->Unit){
+        viewModelScope.launch {
+            try {
+                val response = api.addAccount(service)
+                if(response.isSuccessful){
+                    val jsonResponse = response.body()
+                    Log.d("debug", "${response.body()}")
+                    onResult(jsonResponse)
+                } else {
+                    Log.d("debug", "Error: ${response.body()}")
+                    onResult(null)
+                }
+            } catch (exception: Exception){
+                Log.d("debug", "API CALL FAILED: $exception")
+                onResult(null)
+            }
+        }
     }
 }
