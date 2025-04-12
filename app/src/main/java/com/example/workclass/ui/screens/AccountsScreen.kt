@@ -113,6 +113,18 @@ fun AccountScreen(
                             Log.d("debug-db","Error: $exception")
                         }
                     }
+                },
+                onDeleteClick = { id ->
+                    viewModel.deleteAccount(id) { response ->
+                        if (response != null) {
+                            Log.d("debug-delete", "Cuenta con ID $id eliminada correctamente")
+                            Toast.makeText(context, "Cuenta eliminada", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Log.d("debug-delete", "Error al eliminar la cuenta con ID $id")
+                            Toast.makeText(context, "Error al eliminar", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
                 }
             )
 

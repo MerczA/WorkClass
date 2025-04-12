@@ -11,13 +11,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -39,6 +43,7 @@ fun AccountDetailCardComponent(
     imageURL: String,
     description: String,
     onSaveClick: () -> Unit,
+    onDeleteClick: (Int) -> Unit,
     navController: NavController,
 
     ) {
@@ -83,6 +88,17 @@ fun AccountDetailCardComponent(
                     contentDescription = "Edit Account"
                 )
             }
+            IconButton(onClick = {
+                onDeleteClick(id)
+
+
+            }) {
+                Icon(
+                    imageVector = Icons.Filled.Delete,
+                    contentDescription = "Delete account",
+                )
+            }
+
 
         }
     }
@@ -92,7 +108,7 @@ fun AccountDetailCardComponent(
     Spacer(modifier = Modifier.height(16.dp))
 
         InfoRow(title = "Account", value = name)
-        InfoRow(title = "Username", value = username, showIcon = true)
+        InfoRow(title = "Username", value = username)
         InfoRow(title = "Password", value = password, showIcon = true)
         InfoRow(title = "Description", value = description)
     }
@@ -102,6 +118,9 @@ fun AccountDetailCardComponent(
 
 @Composable
 fun InfoRow(title: String, value: String, showIcon: Boolean = false) {
+    val showPassword = remember { mutableStateOf(false) }
+    val isPasswordField = title.lowercase() == "password"
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -113,18 +132,20 @@ fun InfoRow(title: String, value: String, showIcon: Boolean = false) {
             modifier = Modifier.weight(1f),
             fontWeight = FontWeight.Bold
         )
+
         Text(
-            text = value,
+            text = if (isPasswordField && !showPassword.value) "••••••" else value,
             modifier = Modifier.weight(2f)
         )
-        if (showIcon) {
-            IconButton(onClick = {
-            }) {
+
+        if (isPasswordField) {
+            IconButton(onClick = { showPassword.value = !showPassword.value }) {
                 Icon(
-                    imageVector = Icons.Default.Share,
-                    contentDescription = "Action"
+                    imageVector = if (showPassword.value) Icons.Default.Menu else Icons.Default.Menu,
+                    contentDescription = if (showPassword.value) "Ocultar" else "Mostrar"
                 )
             }
         }
     }
 }
+
