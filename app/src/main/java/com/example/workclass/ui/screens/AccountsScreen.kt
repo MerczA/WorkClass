@@ -1,4 +1,5 @@
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,6 +47,8 @@ fun AccountScreen(
 
     val db: AppDatabase = DatabaseProvider.getDatabase(LocalContext.current)
     val accountDao = db.accountDao()
+
+
 
 
     Column {
@@ -106,6 +109,8 @@ fun AccountScreen(
                         try {
                             accountDetail?.let { accountDao.insert(it.toAccountEntity()) }
                             Log.d("debug-db","account inserted successfully")
+
+
                         }catch (exception: Exception){
                             Log.d("debug-db","Error: $exception")
                         }
