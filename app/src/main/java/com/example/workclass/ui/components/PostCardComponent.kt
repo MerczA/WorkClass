@@ -50,7 +50,6 @@ fun PostCardComponent (id:Int,title:String,text:String,image:Int){
 
         )
         Text(
-            //stringResource(R.string.ejemplo),
             text = text,
             textAlign = TextAlign.Justify,
             lineHeight = 10.sp,

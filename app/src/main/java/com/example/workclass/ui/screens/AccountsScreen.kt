@@ -48,8 +48,7 @@ fun AccountScreen(
     val db: AppDatabase = DatabaseProvider.getDatabase(LocalContext.current)
     val accountDao = db.accountDao()
 
-
-
+    val context = LocalContext.current
 
     Column {
         TopBarComponent("Accounts",navController, "accounts_screen")
@@ -104,20 +103,19 @@ fun AccountScreen(
                 accountDetail?.password ?: "",
                 accountDetail?.imageURL ?: "",
                 accountDetail?.description ?: "",
+                navController = navController,
                 onSaveClick = {
                     CoroutineScope(Dispatchers.IO).launch { //Para conectarnos con la base de datos interna y realizar operaciones
                         try {
                             accountDetail?.let { accountDao.insert(it.toAccountEntity()) }
                             Log.d("debug-db","account inserted successfully")
-
-
                         }catch (exception: Exception){
                             Log.d("debug-db","Error: $exception")
                         }
                     }
                 }
+            )
 
-                )
         }
     }
 }

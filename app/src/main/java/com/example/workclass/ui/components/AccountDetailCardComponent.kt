@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.workclass.R
 
@@ -37,8 +38,10 @@ fun AccountDetailCardComponent(
     password: String,
     imageURL: String,
     description: String,
-    onSaveClick: () -> Unit
-) {
+    onSaveClick: () -> Unit,
+    navController: NavController,
+
+    ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -73,13 +76,14 @@ fun AccountDetailCardComponent(
             }
 
             IconButton(onClick = {
-                // Aquí va la acción para editar
+                navController.navigate("manage_account_screen?id=$id")
             }) {
                 Icon(
-                    imageVector = Icons.Default.Edit, // Usa el ícono de editar
+                    imageVector = Icons.Default.Edit,
                     contentDescription = "Edit Account"
                 )
             }
+
         }
     }
 
@@ -89,7 +93,7 @@ fun AccountDetailCardComponent(
 
         InfoRow(title = "Account", value = name)
         InfoRow(title = "Username", value = username, showIcon = true)
-        InfoRow(title = "Password", value = password, showIcon = true) // Puedes usar un state para ocultar/revelar
+        InfoRow(title = "Password", value = password, showIcon = true)
         InfoRow(title = "Description", value = description)
     }
 
@@ -117,7 +121,7 @@ fun InfoRow(title: String, value: String, showIcon: Boolean = false) {
             IconButton(onClick = {
             }) {
                 Icon(
-                    imageVector = Icons.Default.Share, // Reemplaza por el ícono adecuado
+                    imageVector = Icons.Default.Share,
                     contentDescription = "Action"
                 )
             }

@@ -26,7 +26,6 @@ import coil.compose.AsyncImage
 import com.example.workclass.R
 
 
-//@Preview  (showBackground = true)
 @Composable
 fun AccountCardComponent(
     id:Int,
