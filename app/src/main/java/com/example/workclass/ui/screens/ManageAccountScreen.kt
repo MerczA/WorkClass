@@ -98,22 +98,23 @@ fun ManageAccountScreen(
     }
 }
 
-fun TryAccount(name:String,username:String,password:String,description:String,viewModel: AccountViewModel, context: Context){
-    if(name == "" || username == "" || password == "" || description == ""){
+fun TryAccount(name:String,username:String,password:String,description:String,viewModel: AccountViewModel, context: Context) {
+    if (name == "" || username == "" || password == "" || description == "") {
         Toast.makeText(
             context,
             "Error agregue todos los datos ",
             Toast.LENGTH_SHORT
         ).show()
     } else {
-        val add_Account = AccountModel(0,name,username,password,description)
-        viewModel.createAccount(add_Account){ jsonResponse ->
+        val add_Account = AccountModel(0, name, username, password, description)
+        viewModel.createAccount(add_Account) { jsonResponse ->
             val CreateStatus = jsonResponse?.get("addAccount")?.asString
-            Log.d("debug", "LOGIN STATUS: $CreateStatus")
-            if(CreateStatus == "success"){
-                Log.d("debug","Se creo de manera exitosa")
-            }
+            Log.d("debug", "LOGIN STATUS: $add_Account")
+            Toast.makeText(
+                context,
+                "Se agrego la cuenta de forma exitosa",
+                Toast.LENGTH_SHORT
+            ).show()
         }
-
     }
-    }
+}
