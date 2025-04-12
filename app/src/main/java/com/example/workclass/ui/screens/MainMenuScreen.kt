@@ -43,5 +43,11 @@ Column(
     ) {
         Text("Go to Components Screens")
     }
+    Button(
+        onClick = { navController.navigate("Login_Screen")}
+
+    ) {
+        Text("Go to Login Screen")
+    }
 }
 }
