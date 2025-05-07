@@ -2,6 +2,7 @@ package com.example.workclass.Class
 
 //class variable {
 //}
+//
 
 fun main (){
     //Numeric variables
