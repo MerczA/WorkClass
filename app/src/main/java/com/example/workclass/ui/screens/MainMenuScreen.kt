@@ -49,5 +49,11 @@ Column(
     ) {
         Text("Go to Login Screen")
     }
+    Button(
+        onClick = { navController.navigate("apiCamera")}
+
+    ) {
+        Text("Go to Api Camera")
+    }
 }
 }

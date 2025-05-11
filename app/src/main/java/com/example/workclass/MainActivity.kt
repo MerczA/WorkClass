@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.workclass.data.database.AppDatabase
 import com.example.workclass.data.database.DatabaseProvider
+import com.example.workclass.ui.screens.ApiCamera
 import com.example.workclass.ui.screens.ComponentScreen
 import com.example.workclass.ui.screens.FavoriteAccountScreen
 import com.example.workclass.ui.screens.HomeScreen
@@ -51,7 +52,7 @@ fun ComposeMultiScreenApp() { //La navegacion entre pantallas
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar a la pantalla del menu que vamos a querer por medio de una ruta
-    NavHost(navController = navController, startDestination = "Login_screen") {
+    NavHost(navController = navController, startDestination = "main_menu") {
         composable("main_menu") { MainMenuScreen(navController) }
         composable("home_screen") { HomeScreen(navController) }
         composable("test_screen") { TestScreen(navController) }
@@ -64,6 +65,8 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
             ManageAccountScreen(navController = navController, id = id)
         }
         composable("favorite_accounts_screen") { FavoriteAccountScreen(navController) }
+        composable("apiCamera") { ApiCamera(navController) }
+
 
     }
 }
