@@ -13,7 +13,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.workclass.data.database.AppDatabase
 import com.example.workclass.data.database.DatabaseProvider
-import com.example.workclass.ui.screens.ApiCamera
 import com.example.workclass.ui.screens.ComponentScreen
 import com.example.workclass.ui.screens.FavoriteAccountScreen
 import com.example.workclass.ui.screens.HomeScreen
@@ -21,6 +20,7 @@ import com.example.workclass.ui.screens.InterfazNike
 import com.example.workclass.ui.screens.LoginScreen
 import com.example.workclass.ui.screens.MainMenuScreen
 import com.example.workclass.ui.screens.ManageAccountScreen
+import com.example.workclass.ui.screens.ReporteFotoApp
 import com.example.workclass.ui.screens.TestScreen
 import com.example.workclass.ui.theme.WorkClassTheme
 
@@ -65,7 +65,7 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
             ManageAccountScreen(navController = navController, id = id)
         }
         composable("favorite_accounts_screen") { FavoriteAccountScreen(navController) }
-        composable("apiCamera") { ApiCamera(navController) }
+        composable("apiCamera") { ReporteFotoApp(navController) }
 
 
     }
