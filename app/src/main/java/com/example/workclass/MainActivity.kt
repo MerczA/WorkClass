@@ -20,6 +20,7 @@ import com.example.workclass.ui.screens.InterfazNike
 import com.example.workclass.ui.screens.LoginScreen
 import com.example.workclass.ui.screens.MainMenuScreen
 import com.example.workclass.ui.screens.ManageAccountScreen
+import com.example.workclass.ui.screens.ReporteFotoApp
 import com.example.workclass.ui.screens.TestScreen
 import com.example.workclass.ui.theme.WorkClassTheme
 
@@ -51,7 +52,7 @@ fun ComposeMultiScreenApp() { //La navegacion entre pantallas
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar a la pantalla del menu que vamos a querer por medio de una ruta
-    NavHost(navController = navController, startDestination = "Login_screen") {
+    NavHost(navController = navController, startDestination = "main_menu") {
         composable("main_menu") { MainMenuScreen(navController) }
         composable("home_screen") { HomeScreen(navController) }
         composable("test_screen") { TestScreen(navController) }
@@ -64,6 +65,8 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
             ManageAccountScreen(navController = navController, id = id)
         }
         composable("favorite_accounts_screen") { FavoriteAccountScreen(navController) }
+        composable("apiCamera") { ReporteFotoApp(navController) }
+
 
     }
 }
