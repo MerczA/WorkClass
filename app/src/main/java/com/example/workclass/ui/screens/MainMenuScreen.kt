@@ -55,5 +55,11 @@ Column(
     ) {
         Text("Go to Api Camera")
     }
+    Button(
+        onClick = { navController.navigate("apiContactsCalendar")}
+
+    ) {
+        Text("Go to Contacts and calendar Api ")
+    }
 }
 }

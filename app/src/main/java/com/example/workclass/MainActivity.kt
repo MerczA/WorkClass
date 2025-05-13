@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.workclass.data.database.AppDatabase
 import com.example.workclass.data.database.DatabaseProvider
+import com.example.workclass.ui.screens.AppScreen
 import com.example.workclass.ui.screens.ComponentScreen
 import com.example.workclass.ui.screens.FavoriteAccountScreen
 import com.example.workclass.ui.screens.HomeScreen
@@ -66,6 +67,7 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
         }
         composable("favorite_accounts_screen") { FavoriteAccountScreen(navController) }
         composable("apiCamera") { ReporteFotoApp(navController) }
+        composable("apiContactsCalendar") { AppScreen(navController) }
 
 
     }
