@@ -101,6 +101,9 @@ dependencies {
 
     implementation ("io.coil-kt:coil-compose:2.2.2")  // Usa la versión correcta
 
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation (libs.androidx.work.runtime)
+
 
 
 

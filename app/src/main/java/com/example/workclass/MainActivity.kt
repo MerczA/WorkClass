@@ -1,6 +1,8 @@
 package com.example.workclass
 
 import AccountScreen
+import NotificationScreenPreview
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -28,6 +30,13 @@ import com.example.workclass.ui.theme.WorkClassTheme
 class MainActivity : ComponentActivity() {
     lateinit var database:AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) !=
+                android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1001)
+            }
+        }
+
         super.onCreate(savedInstanceState)
         try{
             database = DatabaseProvider.getDatabase(this)
@@ -42,6 +51,7 @@ class MainActivity : ComponentActivity() {
 
             }
         }
+
     }
 } //CLOSE CLASS
 
@@ -68,6 +78,7 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
         composable("favorite_accounts_screen") { FavoriteAccountScreen(navController) }
         composable("apiCamera") { ReporteFotoApp(navController) }
         composable("apiContactsCalendar") { AppScreen(navController) }
+        composable("apiPush") { NotificationScreenPreview(navController) }
 
 
     }

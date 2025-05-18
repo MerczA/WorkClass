@@ -61,5 +61,11 @@ Column(
     ) {
         Text("Go to Contacts and calendar Api ")
     }
+    Button(
+        onClick = { navController.navigate("apiPush")}
+
+    ) {
+        Text("Go to Push notifications Api ")
+    }
 }
 }
