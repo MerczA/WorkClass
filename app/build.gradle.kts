@@ -104,6 +104,9 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
     implementation (libs.androidx.work.runtime)
 
+    implementation ("androidx.biometric:biometric:1.2.0-alpha05")
+
+
 
 
 

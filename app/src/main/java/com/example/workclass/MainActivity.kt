@@ -5,10 +5,13 @@ import NotificationScreenPreview
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.workclass.data.database.AppDatabase
 import com.example.workclass.data.database.DatabaseProvider
 import com.example.workclass.ui.screens.AppScreen
+import com.example.workclass.ui.screens.BiometricScreen
 import com.example.workclass.ui.screens.ComponentScreen
 import com.example.workclass.ui.screens.FavoriteAccountScreen
 import com.example.workclass.ui.screens.HomeScreen
@@ -27,7 +31,7 @@ import com.example.workclass.ui.screens.ReporteFotoApp
 import com.example.workclass.ui.screens.TestScreen
 import com.example.workclass.ui.theme.WorkClassTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
     lateinit var database:AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -79,7 +83,12 @@ fun SetupNavGraph(navController: NavHostController) { //Es el que nos va mandar 
         composable("apiCamera") { ReporteFotoApp(navController) }
         composable("apiContactsCalendar") { AppScreen(navController) }
         composable("apiPush") { NotificationScreenPreview(navController) }
-
+        composable("biometric_screen") {
+            val context = LocalContext.current
+            BiometricScreen(navController, onAuthSuccess = {
+                Toast.makeText(context, "¡Autenticación exitosa!", Toast.LENGTH_SHORT).show()
+            })
+        }
 
     }
 }

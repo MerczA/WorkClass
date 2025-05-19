@@ -67,5 +67,11 @@ Column(
     ) {
         Text("Go to Push notifications Api ")
     }
+    Button(
+        onClick = { navController.navigate("biometric_screen")}
+
+    ) {
+        Text("Go to Biometric Sensor")
+    }
 }
 }
