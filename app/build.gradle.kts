@@ -91,8 +91,20 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version") // opcional pero recomendado
     ksp("androidx.room:room-compiler:$room_version")
+    val cameraxVersion = "1.3.1"
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion") // Necesario para PreviewView
+    implementation("androidx.camera:camera-video:$cameraxVersion") //
 
 
+    implementation ("io.coil-kt:coil-compose:2.2.2")  // Usa la versión correcta
+
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation (libs.androidx.work.runtime)
+
+    implementation ("androidx.biometric:biometric:1.2.0-alpha05")
 
 
 

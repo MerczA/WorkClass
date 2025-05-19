@@ -49,5 +49,29 @@ Column(
     ) {
         Text("Go to Login Screen")
     }
+    Button(
+        onClick = { navController.navigate("apiCamera")}
+
+    ) {
+        Text("Go to Api Camera")
+    }
+    Button(
+        onClick = { navController.navigate("apiContactsCalendar")}
+
+    ) {
+        Text("Go to Contacts and calendar Api ")
+    }
+    Button(
+        onClick = { navController.navigate("apiPush")}
+
+    ) {
+        Text("Go to Push notifications Api ")
+    }
+    Button(
+        onClick = { navController.navigate("biometric_screen")}
+
+    ) {
+        Text("Go to Biometric Sensor")
+    }
 }
 }
